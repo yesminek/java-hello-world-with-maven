@@ -20,11 +20,15 @@ steps:
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
+     mavenPomFile: 'pom.xml'
+      mavenPomFile: 'pom.xml'
+      mavenPomFile: 'pom.xml'
 - task: CopyFiles@2
-      displayName: 'Copy Files to artifact staging directory'
-      inputs:
-        SourceFolder: '$(System.DefaultWorkingDirectory)'
-        Contents: '**/target/*.?(war|jar)'
-        TargetFolder: $(Build.ArtifactStagingDirectory)
-    - upload: $(Build.ArtifactStagingDirectory)
-      artifact: drop
+  displayName: 'Copy Files to artifact staging directory'
+  inputs:
+    SourceFolder: '$(System.DefaultWorkingDirectory)'
+    Contents: '**/target/*.?(war|jar)'
+    TargetFolder: $(Build.ArtifactStagingDirectory)
+- upload: $(Build.ArtifactStagingDirectory)
+  artifact: drop     
+      
